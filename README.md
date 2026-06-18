@@ -11,9 +11,10 @@ https://aistudy-plan.netlify.app/
 ## 📸 Screenshots
 
 ![AI-Study-Planner](Screenshots/Screenshot1.png)
-![AI-Study-Planner](Screenshots/Screenshot2.png)
-![AI-Study-Planner](Screenshots/Screenshot3.png)
 
+![AI-Study-Planner](Screenshots/Screenshot2.png)
+
+![AI-Study-Planner](Screenshots/Screenshot3.png)
 
 ## ✨ Features
 
