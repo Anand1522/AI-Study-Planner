@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI Study Planner - Day 10</title>
+<style>
+body{font-family:Arial,sans-serif;background:#0f172a;color:white;margin:0;padding:20px}
+.container{max-width:900px;margin:auto;background:#1e293b;padding:25px;border-radius:12px}
+h1{text-align:center;color:#38bdf8}
+select,input,button{width:100%;padding:12px;margin-top:10px;border-radius:8px;border:none}
+button{background:#38bdf8;font-weight:bold;cursor:pointer}
+.result{margin-top:20px;background:#0f172a;padding:15px;border-radius:10px;white-space:pre-wrap}
+</style>
+</head>
+<body>
+<div class="container">
+<h1>🚀 AI Study Planner</h1>
+
+<select id="track">
+<option value="">Select Learning Track</option>
+<option>Data Structures</option>
+<option>Python</option>
+<option>Web Development</option>
+<option>Data Science</option>
+<option>Machine Learning</option>
+</select>
+
+<select id="days">
+<option value="">Select Duration</option>
+<option value="15">15 Days</option>
+<option value="30">30 Days</option>
+</select>
+
+<input type="number" id="hours" min="1" max="12" placeholder="Hours Per Day">
+
+<button onclick="generatePlan()">Generate Study Plan</button>
+
+<div id="result" class="result">Your study plan will appear here.</div>
+</div>
+
+<script>
+const tracks={
+"Data Structures":["Arrays","Strings","Linked Lists","Stacks","Queues","Recursion","Searching","Sorting","Trees","Binary Trees","BST","Heaps","Hash Tables","Graphs","Dynamic Programming"],
+"Python":["Introduction","Variables","Data Types","Operators","Conditions","Loops","Functions","Lists","Tuples","Dictionaries","Sets","File Handling","OOP","Modules","Projects"],
+"Web Development":["HTML Basics","Forms","CSS Basics","Flexbox","Grid","Responsive Design","JavaScript Basics","DOM","ES6","API Fetch","Git","GitHub","React Basics","Projects","Deployment"],
+"Data Science":["Python","NumPy","Pandas","Data Cleaning","Visualization","Statistics","EDA","SQL","Machine Learning","Regression","Classification","Clustering","Model Evaluation","Projects","Deployment"],
+"Machine Learning":["Python Review","Statistics","Linear Regression","Logistic Regression","Decision Trees","Random Forest","SVM","KNN","Clustering","Feature Engineering","Model Evaluation","Deep Learning Intro","NLP Intro","Computer Vision Intro","Projects"]
+};
+
+function generatePlan(){
+let track=document.getElementById("track").value;
+let days=parseInt(document.getElementById("days").value);
+let hours=parseInt(document.getElementById("hours").value);
+
+if(!track||!days||!hours){alert("Please fill all fields.");return;}
+
+let pace=hours<=2?"Light Pace":(hours<=4?"Moderate Pace":"Intensive Pace");
+let topics=tracks[track];
+let plan=[];
+
+for(let i=1;i<=days;i++){
+let topic=topics[(i-1)%topics.length];
+plan.push("Day "+i+" : "+topic);
+}
+
+let milestones=Math.ceil(days/7);
+
+let output="🎯 Learning Track: "+track+"\n📅 Duration: "+days+" Days\n⏰ Hours Per Day: "+hours+"\n🚀 Pace: "+pace+"\n\n📖 DAILY STUDY PLAN\n\n"+plan.join("\n")+"\n\n🏆 WEEKLY MILESTONES\n";
+
+for(let i=1;i<=milestones;i++){
+output+="\nWeek "+i+" : Complete scheduled topics and practice exercises.";
+}
+
+output+="\n\n💡 FINAL PROJECT SUGGESTION\nBuild a real-world project using the skills learned in this track.";
+
+document.getElementById("result").textContent=output;
+}
+</script>
+</body>
+</html>
